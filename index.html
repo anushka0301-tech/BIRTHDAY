@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Bestie! 🎈</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Color+Emoji&family=Nunito:wght@400;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #bfbed1;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    margin-top: -20px;
+}
+
+.birthday-background { position: fixed; inset: 0; z-index: 10; pointer-events: none; overflow: hidden; transform: scale(0.92)}
+.party-item { 
+    position: absolute; 
+    user-select: none; 
+    will-change: transform;
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+    transform: scale(0.1);
+}
+
+/* --- Mobile App Frame --- */
+.app-container {
+    background: #bfbed1;
+    width: 80%;
+    max-width: 390px;
+    height: 92vh;
+    max-height: 850px;
+    border-radius: 40px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+}
+.app-container::-webkit-scrollbar { width: 6px; }
+.app-container::-webkit-scrollbar-thumb { background: linear-gradient(#38bdf8, #f43f5e, #bae6fd); border-radius: 10px; }
+
+/* --- Dynamic Screen Controls --- */
+.screen { 
+    display: none; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 15px 20px; 
+    width: 100%; 
+    height: 100%; 
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards; 
+}
+.screen.active { display: flex; }
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.main-title { 
+    font-family: 'Fredoka', sans-serif; 
+    font-size: 1.9rem; 
+    background: linear-gradient(45deg, #0284c7, #c15062, #38bdf8); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    margin-top: 0px; 
+    margin-bottom: 8px; 
+    text-align: center; 
+}
+.emoji {
+  margin-left:0.1px;
+  font-size: 1.9rem;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: initial;
+
+  font-family:
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Noto Color Emoji",
+    sans-serif;
+}
+.subtitle { 
+    color: #59363a; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    margin-bottom: 25px;
+    text-align: center; 
+}
+.envelope-title-color { 
+    color: #38bdf8; 
+    font-size: 2rem; 
+    vertical-align: middle; 
+    margin-left: 5px; 
+}
+
+/* Instagram Reel Trend Layout Styles */
+.reel-card-layout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    text-align: center;
+    margin-top: -30px;
+}
+
+.reel-img-frame {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.reel-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.reel-title {
+    font-size: 1.25rem;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    color: #554ea0;
+    margin-bottom: 5px;
+    max-width: 280px;
+}
+.reel-subtitle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #54585f;
+    margin-bottom: 7px;
+    text-align: center;
+}
+
+/* Button & Choice Container */
+.button-choice-box {
+    width: 100%;
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.choice-yes {
+    padding: 14px 28px !important;
+    font-size: 1rem !important;
+    z-index: 10;
+    margin-bottom: 7 !important;
+}
+
+.choice-no {
+    padding: 14px 28px !important;
+    font-size: 1rem !important;
+    margin-top: 1px !important;
+    transition: all 0.1s ease;
+    z-index: 100;
+}
+
+/* --- Countdown Elements (RESTORED TO CROPPED / FULL VIEW) --- */
+.slideshow-container { 
+    width: 100%; 
+    aspect-ratio: 1.2/1; 
+    border-radius: 24px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+    margin-bottom: 30px; 
+    outline: 2px dashed #9f9be5; }
+.slideshow-container img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover !important; } /* Keeps countdown pic full and cropped perfectly */
+
+.countdown-timer { 
+    display: flex; 
+    justify-content: space-around; 
+    width: 100%; 
+    gap: 10px; 
+    margin-bottom: 35px; 
+}
+.timer-block { 
+    background: #f0f9ff; 
+    border: 2px solid #bae6fd; 
+    padding: 12px 5px; 
+    border-radius: 16px; 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; }
+.timer-block span { font-size: 1.6rem; font-weight: 900; color: #0284c7; font-family: 'Fredoka', sans-serif; }
+.timer-block label { font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-top: 2px; }
+
+/* --- ENVELOPE SELECTION CARD GRID (DOTTED BORDERS) --- */
+.envelope-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    width: 100%; 
+    padding-top: 10px; }
+.menu-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 15px 10px 20px 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.05);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 45px solid transparent;
+    border-right: 45px solid transparent;
+    transition: all 0.25s ease;
+    z-index: 2;
+}
+
+.menu-card .icon { 
+    font-size: 3.6rem; 
+    display: block; 
+    position: relative; 
+    z-index: 1; 
+}
+.menu-card .icon i { 
+    font-size: 3.2rem; 
+    display: block; 
+    position: relative; 
+    z-index: 1; 
+}
+.menu-card .label { 
+    font-size: 0.95rem; 
+    font-weight: 800; 
+    position: relative; 
+    z-index: 1; }
+
+.envelope-grid button:nth-child(1) { 
+    border: 3px dashed #3e474b; 
+    background: #f0f9ff; 
+}
+.envelope-grid button:nth-child(1) .label { 
+    color: #0369a1; 
+}
+.envelope-grid button:nth-child(1):hover { 
+    background: #e0f2fe; 
+    transform: translateY(-4px); }
+
+.envelope-grid button:nth-child(2) { 
+    border: 3px dashed #3e474b; 
+    background: #fff1f2; 
+}
+.envelope-grid button:nth-child(2) .label { 
+    color: #be123c; 
+}
+.envelope-grid button:nth-child(2):hover { 
+    background: #ffe4e6; 
+    transform: translateY(-4px); 
+}
+.envelope-grid button:nth-child(3) { 
+    border: 3px dashed #3e474b; 
+    background: #fdf2f8; 
+}
+.envelope-grid button:nth-child(3) .label { 
+    color: #9d174d; }
+.envelope-grid button:nth-child(3):hover { 
+    background: #fce7f3; 
+    transform: translateY(-4px); }
+
+.envelope-grid button:nth-child(4) { 
+     border: 3px dashed #3e474b; 
+    background: #f0f9ff; }
+.envelope-grid button:nth-child(4) .label { 
+    color: #0369a1; 
+}
+.envelope-grid button:nth-child(4):hover { 
+    background: #e0f2fe; 
+    transform: translateY(-4px); 
+}
+.screen-title { 
+    font-family: 'Fredoka', sans-serif; color: #0369a1; 
+    font-size: 1.9rem; 
+    margin-top: 0; 
+    margin-bottom: 5px; 
+    text-align: center; 
+}
+.screen-subtitle { 
+    font-size: 0.95rem; 
+    font-weight: 600; 
+    color: #94a3b8; 
+    margin-bottom: 25px; 
+    text-align: center; 
+}
+
+/*--TIMELINE STYLES--*/
+
+.timeline-container {
+    position: relative;
+    width: 100%;
+    margin: 8px 0 12px 0;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-height: 380px;
+    overflow-y: auto;
+}
+.timeline-line {
+    position: absolute;
+    left: 24px;
+    top: 0;
+    height: 490%;
+    width: 3px;
+    background: linear-gradient(to bottom, #38bdf8, #f43f5e, #f472b6);
+    border-radius: 2px;
+    z-index: 1;
+}
+.timeline-item { 
+    display: flex; 
+    gap: 9px; 
+    position: relative; z-index: 2; align-items: flex-start; }
+
+.timeline-badge {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #38bdf8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0284c7;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-left: -45px
+}
+.timeline-item:nth-child(odd) .timeline-badge { border-color: #f43f5e; color: #f43f5e; }
+.timeline-panel { 
+    background: #ffffff;
+    border: 2px solid #f0f9ff;
+    border-radius: 9px;
+    padding: 8px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.03);
+    flex: 1; }
+.timeline-date { 
+    font-size: 0.65rem; 
+    font-weight: 900; text-transform: uppercase; color: #f43f5e; letter-spacing: 0.5px; display: block; margin-bottom: 2px; }
+.timeline-heading { 
+    font-family: 'Fredoka', sans-serif; font-size: 0.9rem; color: #0369a1; margin-bottom: 5px; }
+.timeline-img { 
+    width: 100%;
+    max-height: 130px;
+    object-fit: cover;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    border: 2px solid #bae6fd;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+.timeline-panel p { font-size: 0.8rem; color: #64748b; line-height: 1.3; font-weight: 600; }
+/* --- Navigation Buttons --- */
+.back-btn { background: #ffffff; color: #64748b; border: 2px solid #e2e8f0; padding: 12px 25px; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 15px; margin-bottom: 10px; transition: all 0.2s; }
+.back-btn:hover { background: #fff1f2; color: #f43f5e; border-color: #fecdd3; }
+
+/* --- PHOTO GRIDS (FIXED NO OVERLAP & FULLY VISIBLE PROPORTIONS) --- */
+.photo-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 16px; 
+    width: 100%; 
+    margin-bottom: 10px;
+    max-height: 490px; 
+    overflow-y: auto;
+    padding: 10px 6px;
+}
+.photo-grid::-webkit-scrollbar { width: 4px; }
+.photo-grid::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 10px; }
+
+.photo-item { 
+    width: 100%;
+    height: 160px; 
+    border-radius: 14px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 10px rgba(14, 165, 233, 0.06); 
+    cursor: pointer; 
+    border: 3px solid #ffffff; 
+    outline: 1px solid #e2e8f0;
+    background-color: #f8fafc; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.photo-item img { 
+    width: 100%; 
+    height: 100%; 
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover ; /* Grid images fill the container */
+    display: block;
+    transition: transform 0.2s ease; 
+}
+.photo-item:hover img { transform: scale(1.03); }
+
+/* --- Letter Box Window --- */
+.letter-box { 
+    background: #ffffff; 
+    border: 2px dashed #f472b6; 
+    border-radius: 20px; 
+    padding: 10px; 
+    width: 100%; 
+    box-shadow: 0 10px 20px rgba(244, 114, 182, 0.05); 
+    line-height: 1.6; color: #334155; }
+.signature { 
+    text-align: right; 
+    font-family: 'Fredoka', sans-serif; color: #f43f5e; 
+    font-size: 1.1rem; 
+    margin-top: 1px !important; }
+
+/* --- Birthday Surprise Panel Layout --- */
+.suprise-screen-title { 
+    font-family: 'Fredoka', sans-serif; 
+    font-size: 1.9rem; 
+    color:  #3751ad; 
+    margin-top: 0px; 
+    margin-bottom: 8px; 
+    text-align: center; 
+}
+.surprise-planner { width: 100%; background: #ffffff; border: 3px dashed #38bdf8; border-radius: 20px; padding: 20px 15px; text-align: center; margin-top: 10px; box-shadow: 0 10px 25px rgba(14, 165, 233, 0.05); }
+.plan-heading { font-size: 1rem; font-weight: 700; color: #64748b; margin-bottom: 15px; }
+.cake-display { margin-bottom: 15px; animation: floatCake 2.5s ease-in-out infinite; }
+.cake-icon{font-size: 90px;}
+.cake-icon i { font-size: 7rem; display: inline-block; filter: drop-shadow(0 10px 12px rgba(244, 63, 94, 0.15)); }
+
+@keyframes floatCake { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.short-msg-box { background: #f0f9ff; padding: 15px; border-radius: 15px; margin-bottom: 20px; border-left: 5px solid #38bdf8; border-right: 5px solid #f472b6; }
+.short-msg-box p { font-size: 0.95rem; color: #0369a1; line-height: 1.5; font-weight: 700; }
+
+.accept-btn { 
+    background: linear-gradient(45deg, #38bdf8, #f43f5e, #f472b6, #7dd3fc); 
+    background-size: 300% 300%; 
+    color: #ffffff; 
+    border: none; 
+    padding: 12px 27px; 
+    border-radius: 50px; 
+    font-weight: 800; 
+    font-size: 1.0rem; 
+    cursor: none; 
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.2); 
+    transition: all 0.3s ease; 
+    animation: pastelGlow 4s ease infinite; 
+    width: max-content; }
+@keyframes pastelGlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.accept-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(14, 165, 233, 0.3); }
+
+/* --- Photo Puzzle Slide --- */
+body.puzzle-body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            background-color: #2858b8;
+            overflow-y: auto;
+        }
+
+        .photo-puzzle-screen {
+            text-align: center;
+            padding: 1.25rem 1.5rem; 
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            max-width: 100%;
+            background: #ffffff;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .puzzle-screen-title {
+            margin: 0 0 0.2rem 0;
+            color: #1f2937;
+            font-size: 1.5rem;
+        }
+
+        .puzzle-screen-subtitle {
+            margin: 0 0 1rem 0;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .puzzle-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+        }
+
+
+        .puzzle-board {
+            position: relative;
+            margin-top: -20px;
+            width: 315px;
+            height: 560px;
+            transform: translateY(-5px);
+            border-radius: 0; 
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            background: #e5e7eb;
+        }
+        .puzzle-piece {
+            touch-action: none;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: grab;
+            overflow: visible; 
+            position: absolute; 
+            width: 105px; 
+            height: 186.66px;
+            z-index: 1;
+            display: block;
+            transition:
+        top 0.45s ease,
+        left 0.45s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* Shuffle animation state */
+.puzzle-board.shuffling .puzzle-piece {
+    transform: scale(0.92);
+    opacity: 0.6;
+}
+
+        .puzzle-piece:active {
+            cursor: grabbing;
+            z-index: 50; 
+        }
+
+        .puzzle-piece svg {
+            width: 147px;  
+            height: 228.66px;
+            position: absolute;
+            left: -21px;
+            top: -21px;}
+
+        .piece-outline {
+            fill: none;
+            stroke: rgba(0, 0, 0, 0.15);
+            stroke-width: 1px;
+        }
+
+        .puzzle-status {
+            font-weight: 500;
+            color: #4b5563;
+            margin-top: 0.1rem;
+            font-size: 0.9rem;
+        }
+        .puzzle-reset-btn {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            transform: translateY(-6px);
+        }
+
+        .puzzle-reset-btn:hover {
+            background-color: #bae6fd;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .success-image-pop {
+            width: 315px;
+            height: 560px;
+            border-radius: 0; 
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .success-image-pop {
+            transform: scale(1);
+        }
+
+        .success-image-pop img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill; 
+            display: block;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 101; 
+            transition: opacity 0.8s ease;
+        }
+/* --- Lightbox Window --- */
+.lightbox { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; backdrop-filter: blur(4px); }
+.lightbox img { max-width: 95%; max-height: 85vh; object-fit: contain; border-radius: 24px; 
+    border: 5px solid #ffffff; 
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3); 
+}
+
+/* --- PASSCODE SCREEN --- */
+.passcode-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+.passcode-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -30px;
+}
+
+.passcode-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.9rem;
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.passcode-subtitle {
+    font-size: 0.95rem;
+    color: #e9eaea;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.passcode-display {
+    display: flex;
+    justify-content: center;   /* horizontal center */
+    gap: 14px;
+    margin: 20px auto;         /* center the whole block */
+    align-items: center;   /* centers everything inside */
+}
+.passcode-dot {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #bae6fd;
+    border-radius: 4px;
+    background: #ffffff;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center-down;
+    justify-content: center;
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: #0284c7;
+}
+.passcode-dot.filled 
+{
+    background: #ffffff;
+    border-color: #0284c7;
+    font-size: 1.4rem;
+}
+
+.passcode-keyboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    max-width: 180px;
+    margin-bottom: 15px;
+}
+
+.key-btn {
+    padding: 8px;
+    border: 2px solid #bae6fd;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-weight: 700;
+    color: #0369a1;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 0 3px 8px rgba(14, 165, 233, 0.1);
+}
+
+.key-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(14, 165, 233, 0.1);
+}
+
+.key-btn:hover {
+    background: #f0f9ff;
+    border-color: #38bdf8;
+}
+
+.key-clear {
+   background: #f0f9ff;
+    border-color: #38bdf8;
+   color: #0369a1;
+}
+
+.key-clear:hover {
+    background: #fce7f3;
+    border-color: #be123c;
+}
+
+.key-enter {
+    background: #f8fdff;
+    border-color: #38bdf8;
+    color: #781e1e;
+    font-weight: 900;
+}
+
+.key-enter:hover {
+    box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+}
+
+.passcode-error {
+    color: #f43f5e;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}/*---big birthday text--*/
+.big-birthday-text {
+    font-size: 2.0rem;
+    font-family: 'Fredoka', sans-serif;
+    text-align: center;
+    color: #f43f5e;
+    margin-top: -18px;
+    margin-bottom: 15px;
+    animation: pop 1s ease-in-out;
+}
+
+.birthday-gif {
+    display: block;
+    margin: 0 auto 20px;
+    width: 260px;
+    border-radius: 10px;
+}
+.birthday-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #b33b39;
+    margin-bottom: 25px;
+    text-align: center;
+}
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#mute-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    background: #dd596f;
+}
+.heart {
+    position: fixed;
+    font-size: 14px;
+    color: #ff4d6d;
+    pointer-events: none;
+    animation: heart-float 0.9s ease-out forwards;
+    z-index: 9999;
+}
+
+@keyframes heart-float {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-35px) scale(1.2);
+    }
+}
+</style>
+
+</head>
+<body>
+
+    <!-- Audio Node Elements -->
+     <audio id="audio-countdown" src="letter.mp3" loop></audio>
+    <audio id="audio-passcode" src="Overall.mp3" loop></audio>
+    <audio id="audio-question" src="birthday.mp3" loop></audio>
+    <audio id="audio-yesbirthday" src="birthday.mp3" loop></audio>
+    <audio id="audio-main" src="Overall.mp3" loop></audio>
+    <audio id="audio-photo-puzzle-screen" src="Puzzle.mp3" loop></audio>
+    <audio id="audio-letter" src="letter.mp3" loop></audio>
+    <audio id="audio-funny" src="Chand Shifarish.mp3" loop></audio>
+    <audio id="audio-timeline" src="timeline.mp3" loop></audio>
+    <audio id="audio-surprise" src="birthday.mp3" loop></audio>
+    <button id="mute-btn" onclick="toggleMute()">🔇</button>
+
+    <div class="birthday-background"></div>
+
+ <div class="app-container">
+
+    <!-- COUNTDOWN SCREEN -->
+        <div id="countdown-screen" class="screen active">
+            <h1 class="main-title">The Big Day is Here<span class="emoji">⌛</span>
+            </h1>
+            <p class="subtitle">Counting down to the best person's birthday!</p>
+            <div class="slideshow-container">
+                <img id="slideshow-img" src="0.jpg" alt="Sneak Peek Pic">
+            </div>
+
+            <div class="countdown-timer">
+                <div class="timer-block"><span id="days">00</span><label>Days</label></div>
+                <div class="timer-block"><span id="hours">00</span><label>Hrs</label></div>
+                <div class="timer-block"><span id="minutes">00</span><label>Mins</label></div>
+                <div class="timer-block"><span id="seconds">00</span><label>Secs</label></div>
+            </div>
+
+            <p id="countdown-finished-msg" style="display:none; color:#f43f5e; font-weight:800; margin-bottom:15px; text-align:center;">It's officially your birthday! 🎉</p>
+            <button id="enter-hub-btn" class="accept-btn" onclick="switchScreen('passcode-screen')">See My Surprise! ✨</button>
+        </div>
+        <!-- PASSCODE SCREEN -->
+        <div id="passcode-screen" class="screen">
+            <div class="passcode-container">
+                <div class="passcode-right">
+                        <h1 class="passcode-title">Enter Passcode</h1>
+                        <p class="passcode-subtitle">Unlock your surprise !</p>
+                        <p class="passcode-instruction">Hint: It's our first meet up date(iykyk)😉</p>
+                        <div class="passcode-display">
+                            <span id="passcode-dot-1" class="passcode-dot">*</span>
+                        <span id="passcode-dot-2" class="passcode-dot">*</span>
+                        <span id="passcode-dot-3" class="passcode-dot">*</span>
+                        <span id="passcode-dot-4" class="passcode-dot">*</span>
+                    </div>
+                    <div class="passcode-keyboard">
+                        <button class="key-btn" onclick="addPasscodeDigit('1')">1</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('2')">2</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('3')">3</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('4')">4</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('5')">5</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('6')">6</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('7')">7</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('8')">8</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('9')">9</button>
+                        <button class="key-btn key-clear" onclick="clearPasscode()">×</button>
+                        <button class="key-btn" onclick="addPasscodeDigit('0')">0</button>
+                        <button class="key-btn key-enter" onclick="checkPasscode()">✓</button>
+                    </div>
+                    <p id="passcode-error" class="passcode-error" style="display:none;">Incorrect passcode</p>
+                </div>
+            </div>
+        </div>
+ 
+        <!--Question Screen-->
+        <div id="question-screen" class="screen">
+            <div class="reel-card-layout">
+                <div class="reel-img-frame">
+                    <!-- Replace with a cute gif or pic -->
+                    <img src="cute.webp" alt="Excited Cute Ghost">
+                </div>
+                <p class="reel-title">I wants to know if you're ready for your birthday surprise...</p>
+                <p class="reel-subtitle">Try to say no 😈</p>
+                
+                <div class="button-choice-box" id="button-boundary">
+                    <button class="accept-btn choice-yes" onclick="switchScreen('yes-birthday-screen')">Yes, absolutely! ✨</button>
+                    <button class="back-btn choice-no" id="runaway-btn" onclick="('no-birthday-screen')">No 😤</button>
+                </div>
+            </div>
+        </div>
+<!---reel card after yess--->
+        <div id="yes-birthday-screen" class="screen">
+    <h3 class="big-birthday-text">HAPPY BIRTHDAY ADITYA</h3>
+
+    <img 
+        src="giphy.gif"
+        alt="Cute Birthday Gif"
+        class="birthday-gif"
+    >
+    <p class="birthday-subtitle">You are the best person 💖</p>
+
+    <button class="accept-btn" onclick="switchScreen('main-menu')">
+        Continue ✨
+    </button>
+    <button class="back-btn" onclick="switchScreen('question-screen')">Back</button>
+</div>
+       
+        <!-- HUB SELECTION MENU -->
+        <div id="main-menu" class="screen">
+            <h1 class="main-title">Choose an envelope <span class="emoji">✉️</span>
+            </h1>
+            <p class="subtitle">Click and explore the surprises !</p>
+            <div class="envelope-grid">
+                <button class="menu-card" onclick="switchScreen('photo-puzzle-screen')">
+                    <div class="envelope-flap"></div>
+                    <span class="icon">🖼️ </span>
+                    <span class="label">Something Unique</span>
+                </button>
+
+                <button class="menu-card" onclick="switchScreen('letter-screen')">
+                    <div class="envelope-flap"></div>
+                     <span class="icon">✉️</span>
+                    <span class="label">Few Words</span>
+                </button>
+
+                <button class="menu-card" onclick="switchScreen('funny-screen')">
+                    <div class="envelope-flap"></div>
+                    <span class="icon">🤪</span>
+                    <span class="label">Funny Pics</span>
+                </button>
+
+                <button class="menu-card" onclick="switchScreen('timeline-screen')">
+                    <div class="envelope-flap"></div>
+                    <span class="icon">🎂</span>
+                    <span class="label">one more click</span>
+                </button>
+            </div>
+            <button class="back-btn" onclick="switchScreen('yes-birthday-screen')">Back</button>
+        </div>
+        <!---puzzle screen--->
+        <div id="photo-puzzle-screen" class="screen">
+        <h2 class="puzzle-screen-title">Photo Puzzle 🧩</h2>
+        <p class="puzzle-screen-subtitle">Solve this memory to reveal the full photo.</p>
+        <div class="puzzle-card">
+            <div id="photo-puzzle-board" class="puzzle-board" aria-label="Photo puzzle board"></div>
+            <p id="photo-puzzle-status" class="puzzle-status">Drag pieces to swap them.</p>
+<button class="puzzle-reset-btn" onclick="window.resetAndShufflePhotoPuzzle && window.resetAndShufflePhotoPuzzle()">Shuffle Again</button>
+        </div>
+    </div>
+
+    <div id="celebration-modal" class="modal-overlay">
+        <div class="success-image-pop">
+            <img id="modal-success-img" src="" alt="Solved Puzzle View">
+        </div>
+    </div>
+    <canvas id="confetti-canvas"></canvas>
+    <!-- LIGHTBOX OVERLAY WINDOW -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Enlarged view">
+    </div>
+        <!-- MY LETTER CARD -->
+        <div id="letter-screen" class="screen">
+            <h2 class="screen-title">To my Bestfriend 💌</h2>
+            <div class="letter-box">
+                <p><strong>Happy Birthday</strong> — to someone who came unknowingly and stayed meaningfully.</p>
+                <p>In January began as simple conversations unfolded into a bond that feels both gentle and sure.</p>
+                <p>In shared laughter, in unspoken understanding, in moments that asked for no effort yet left a mark,friendship found its own rhythm.</p>
+                <p>This page holds more than a celebration of a date.<br>
+                    It holds gratitude — for presence, for constancy,
+                    for the ease of being understood without explanation.</p>
+                <p>May the year ahead offer you growth without pressure,
+                    joy without reason, and strength when it matters most.<br>
+                    And may you always remain as you are
+                    authentic, grounded, and quietly remarkable.</p>
+                    <p>At last once again, HAPPY BIRTHDAY ADIT..(#Capsicum) </p>
+                <p class="signature">Your Friend,<br>Anushka 🎀🌷 </p>
+            </div>
+            <button class="back-btn" onclick="switchScreen('main-menu')">Back to Menu</button>
+        </div>
+
+        <!-- 6 SEPARATE FUNNY PIC SLOTS -->
+        <div id="funny-screen" class="screen">
+            <h2 class="screen-title">Random Clicks 🤪</h2>
+            <p class="screen-subtitle">Try not to laugh too hard at these!<br>
+            Click to zoom.</p>
+            <div class="photo-grid">
+                <div class="photo-item"><img src="f1.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="f9.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="f2.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="f3.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="f8.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="f6.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="f4.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="12.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="11.jpg" onclick="openLightbox(this.src)"></div>
+                <div class="photo-item"><img src="f7.png" onclick="openLightbox(this.src)"></div>
+
+            </div>
+            <button class="back-btn" onclick="switchScreen('main-menu')">Back to Menu</button>
+        </div>
+
+        <!-- 5 STAGE TIMELINE CONTAINER WITH DATES -->
+        <div id="timeline-screen" class="screen">
+            <h3 class="screen-title">Our some memories⏳</h3>
+            <p class="screen-subtitle">Hope you remember.</p>
+           
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+               
+                <div class="timeline-item">
+                    <div class="timeline-badge" aria-hidden="true">🤝</div>
+
+                    <div class="timeline-panel">
+                        <span class="timeline-date">Feburary 03, 2026</span>
+                        <h4 class="timeline-heading">The First Frame</h4>
+                        <img class="timeline-img" src="t1.jpg" alt="The First Frame" onclick="openLightbox(this.src)">
+                        <p>Familiarity emerged through words; the image preserved it 🌷</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-badge" aria-hidden="true">☕</div>
+
+                    <div class="timeline-panel">
+                        <span class="timeline-date">February 08, 2026</span>
+                        <h4 class="timeline-heading">First Shared Hours</h4>
+                        <img class="timeline-img" src="t2.jpg" alt="First Shared Hours" onclick="openLightbox(this.src)">
+                        <p>Hours turned into minutes inside matching temple and cafes, sharing stories and creating unforgettable moments.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-badge" aria-hidden="true">🎮</div>
+
+                    <div class="timeline-panel">
+                        <span class="timeline-date">February 27, 2026</span>
+                        <h4 class="timeline-heading">A Convergence of Colour</h4>
+                        <img class="timeline-img" src="t3.jpg" alt="A Convergence of Colour" onclick="openLightbox(this.src)">
+                        <p>Bright hues and easy laughter marked our first Holi together.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-badge" aria-hidden="true">📷</div>
+
+                    <div class="timeline-panel">
+                        <span class="timeline-date">April 05, 2026</span>
+                        <h4 class="timeline-heading">A Pause Between Classes</h4>
+                        <img class="timeline-img" src="t4.jpg" alt="A Pause Between Classes" onclick="openLightbox(this.src)">
+                        <p>Losing our voices singing along to our absolute favorite tracks live from the very front row.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-badge" aria-hidden="true">❤️</div>
+
+                    <div class="timeline-panel">
+                        <span class="timeline-date">Present Day 2026</span>
+                        <h4 class="timeline-heading">Inseparable Friendship</h4>
+                        <img class="timeline-img" src="t5.jpg" alt="Present Day" onclick="openLightbox(this.src)">
+                        <p>Through every chapter, laugh, and challenge, you have become my ultimate comfort person.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="accept-btn" onclick="switchScreen('surprise-screen')">Continue to Surprise! 🚀</button>
+            <button class="back-btn" onclick="switchScreen('main-menu')">Back to Menu</button>
+        </div>
+
+        <!-- BIRTHDAY SURPRISE CAKE SLIDE -->
+        <div id="surprise-screen" class="screen">
+            <h2 class="surprise-screen-title">Your Birthday Surprise!🎉</h2>
+            <div class="surprise-planner">
+                <p class="plan-heading">Time to celebrate...</p>
+                <div class="cake-display">
+                    <span class="cake-icon">🎂</span>
+                </div>
+                <div class="short-msg-box">
+                    <p>May your day be filled with endless laughter, sweet cake, and all the happiness you deserve! ✨</p>
+                </div>
+                <button class="accept-btn" onclick="triggerConfettiAlert()">Blow out the candles! 🕯️</button>
+            </div>
+            <button class="back-btn" onclick="switchScreen('timeline-screen')">Back</button>
+        </div>
+<script>
+const screenMusicMap = {
+    'passcode-screen': 'audio-passcode',
+    'countdown-screen': 'audio-countdown',
+    'question-screen': 'audio-question',
+    'yes-birthday-screen': 'audio-yesbirthday',
+    'main-menu': 'audio-main',
+    'photo-puzzle-screen': 'audio-photo-puzzle-screen',
+    'letter-screen': 'audio-letter',
+    'timeline-screen': 'audio-timeline',
+    'funny-screen': 'audio-funny',
+    'surprise-screen': 'audio-surprise',
+};
+
+const targetDate = new Date("july 01, 2026 00:00:00").getTime();
+
+const slideshowImages = [
+    "2.jpg",
+    "1.jpg",
+    "3.jpeg",
+    "4.jpg",
+    "5.jpeg",
+    "6.jpg",
+
+];
+let currentSlideIndex = 0;
+
+// Passcode variables
+let currentPasscode = '';
+const correctPasscode = '2701';
+
+function addPasscodeDigit(digit) {
+    if (currentPasscode.length < 4) {
+        currentPasscode += digit;
+        updatePasscodeDisplay();
+        document.getElementById('passcode-error').style.display = 'none';
+    }
+}
+
+function clearPasscode() {
+    currentPasscode = currentPasscode.slice(0, -1);
+    updatePasscodeDisplay();
+    document.getElementById('passcode-error').style.display = 'none';
+}
+
+function updatePasscodeDisplay() {
+    for (let i = 1; i <= 4; i++) {
+        const dot = document.getElementById(`passcode-dot-${i}`);
+        if (i <= currentPasscode.length) {
+            dot.textContent = '•';
+            dot.classList.add('filled');
+        } else {
+            dot.textContent = '*';
+            dot.classList.remove('filled');
+        }
+    }
+}
+
+function checkPasscode() {
+    if (currentPasscode === correctPasscode) {
+        switchScreen('question-screen');
+        currentPasscode = '';
+        updatePasscodeDisplay();
+    } else {
+        document.getElementById('passcode-error').style.display = 'block';
+        setTimeout(() => {
+            currentPasscode = '';
+            updatePasscodeDisplay();
+        }, 500);
+    }
+}
+
+function switchScreen(screenId) {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => screen.classList.remove('active'));
+    
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+        targetScreen.classList.add('active');
+    }
+
+    stopAllMusic();
+    
+    const targetAudioId = screenMusicMap[screenId];
+    if (targetAudioId) {
+        const targetAudio = document.getElementById(targetAudioId);
+        if (targetAudio) {
+            targetAudio.currentTime = 0;
+            targetAudio.play().catch(() => {});
+        }
+    }
+    // Reset puzzle UI whenever we open/leave the photo puzzle screen
+    if (screenId === 'photo-puzzle-screen') {
+        resetAndShufflePhotoPuzzle();
+    } else {
+        closeCelebrationModal();
+        // Also stop confetti canvas if it was running
+        const canvas = document.getElementById('confetti-canvas');
+        if (canvas) canvas.style.opacity = '0';
+    }
+}
+
+// Reset & (re)initialize Photo Puzzle every time you enter the screen or press Shuffle
+function resetAndShufflePhotoPuzzle() {
+    // Stop any celebration state
+    closeCelebrationModal();
+
+    // Reset status text
+    const statusEl = document.getElementById('photo-puzzle-status');
+    if (statusEl) statusEl.textContent = 'Drag pieces to swap them.';
+
+    // Shuffle tiles + render fresh
+    puzzleTiles = shufflePhotoPuzzleTiles();
+    puzzleDragIndex = null;
+    renderPhotoPuzzle();
+}
+
+
+let isMuted = true;
+
+function toggleMute() {
+    isMuted = !isMuted;
+
+    Object.values(screenMusicMap).forEach(audioId => {
+        const audio = document.getElementById(audioId);
+        if (audio) {
+            audio.muted = isMuted;
+        }
+    });
+
+    document.getElementById("mute-btn").innerText = isMuted ? "🔇" : "🔊";
+}
+
+function openLightbox(imageSrc) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (lightbox && lightboxImg) {
+        lightboxImg.src = imageSrc;
+        lightbox.style.display = 'flex';
+    }
+}
+
+function closeLightbox() { 
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (lightbox) {
+        lightbox.style.display = 'none';
+    }
+    if (lightboxImg) {
+        lightboxImg.src = ''; // Safely clears the image source so it doesn't flash next time
+    }
+}
+function triggerConfettiAlert() { alert("🎂 Happy Birthday! Make a big wish! 🥳✨"); }
+function stopAllMusic() {
+    Object.values(screenMusicMap).forEach(audioId => {
+        const audioNode = document.getElementById(audioId);
+        if (audioNode) { audioNode.pause(); }
+    });
+}
+
+window.addEventListener('click', () => {
+    const activeScreen = document.querySelector('.screen.active');
+    if (activeScreen) {
+        const targetAudioId = screenMusicMap[activeScreen.id];
+        const currentTrack = document.getElementById(targetAudioId);
+        const isAnyPlaying = Object.values(screenMusicMap).some(id => !document.getElementById(id).paused);
+        if (!isAnyPlaying && currentTrack) {
+            currentTrack.play().catch(() => {});
+        }
+    }
+}, { once: false });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".birthday-background");
+    const birthdayMaterials = ['✨', '⭐', '🎈', '🎉', '🎁', '🎂', '🥳', '🧸', '🧁', '🤍','💗']
+    const maxItems = 45;
+
+    for (let i = 0; i < maxItems; i++) { createPartyElement(); }
+
+    function createPartyElement() {
+        const item = document.createElement("div");
+        item.className = "party-item";
+        item.innerText = birthdayMaterials[Math.floor(Math.random() * birthdayMaterials.length)];
+        
+        const size = Math.floor(Math.random() * 20) + 18;
+        item.style.fontSize = `${size}px`;
+        item.style.left = `${Math.random() * 100}vw`;
+        
+        let posY = Math.random() * window.innerHeight;
+        item.style.top = `${posY}px`;
+
+        let speed = Math.random() * 1.2 + 0.6;
+        let driftX = Math.random() * 0.4 - 0.2;
+        let rotation = Math.random() * 360;
+        let rotSpeed = Math.random() * 2 - 1;
+
+        function animateItem() {
+            posY += speed;
+            if (posY > window.innerHeight + 50) {
+                posY = -40;
+                item.style.left = `${Math.random() * 100}vw`;
+            }
+            
+            let currentX = parseFloat(item.style.left);
+            if (!isNaN(currentX)) {
+                item.style.left = `${(currentX + driftX + 100) % 100}vw`;
+            }
+
+            rotation += rotSpeed;
+            item.style.transform = `rotate(${rotation}deg)`;
+            item.style.top = `${posY}px`;
+            
+            requestAnimationFrame(animateItem);
+        }
+        container.appendChild(item);
+        requestAnimationFrame(animateItem);
+    }
+
+    setInterval(() => {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = String(d < 0 ? 0 : d).padStart(2, '0');
+        document.getElementById("hours").innerText = String(h < 0 ? 0 : h).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(m < 0 ? 0 : m).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(s < 0 ? 0 : s).padStart(2, '0');
+
+        if (difference <= 0) {
+            document.getElementById("countdown-finished-msg").style.display = "block";
+            document.getElementById("enter-hub-btn").innerText = "Open Present! 🎁";
+        }
+    }, 1000);
+
+    setInterval(() => {
+        currentSlideIndex = (currentSlideIndex + 1) % slideshowImages.length;
+        const imgElement = document.getElementById("slideshow-img");
+        if (imgElement) { imgElement.src = slideshowImages[currentSlideIndex]; }
+    }, 3000);
+
+    // Fallback for missing images: replace with local placeholder `no.gif`
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', () => {
+            if (!img.dataset.hasFallback) {
+                img.dataset.hasFallback = 'true';
+                img.src = '13.jpg'; // Local fallback image
+            }
+        });
+    });
+});
+
+// 2. The Runaway "No" Button Logic
+const runawayBtn = document.getElementById("runaway-btn");
+
+if (runawayBtn) {
+    // Triggers when a mouse hovers (Desktop) or a finger taps (Mobile)
+    ["mouseenter", "touchstart"].forEach(eventType => {
+        runawayBtn.addEventListener(eventType, function(e) {
+            // Stop tap events from triggering random click cycles on mobile
+            if(eventType === "touchstart") e.preventDefault();
+            
+            // Calculate safe boundaries for the entire screen
+            const maxX = window.innerWidth - runawayBtn.clientWidth - 20;
+            const maxY = window.innerHeight - runawayBtn.clientHeight - 20;
+            
+            // Generate random coordinate updates
+            const randomX = Math.max(20, Math.floor(Math.random() * (maxX + 1)));
+            const randomY = Math.max(20, Math.floor(Math.random() * (maxY + 1)));
+            
+            // Apply fixed positioning with new coordinates
+            runawayBtn.style.position = "fixed";
+            runawayBtn.style.left = randomX + "px";
+            runawayBtn.style.top = randomY + "px";
+        });
+    });
+}
+// Photo puzzle logic
+        const puzzleImageSrc = '13.jpg';      
+        let puzzleTiles = [];
+        let puzzleDragIndex = null;
+        // Add these right below your other puzzle variables!
+        let touchDraggingPiece = null;
+        let touchStartIndex = null;
+        
+        let confettiCtx;
+        let confettiParticles = [];
+        let confettiAnimationId = null;
+        let closeTimeoutId = null;
+
+        const tileW = 105;
+        const tileH = 186.66;
+
+        function startPhotoPuzzle() {
+            if (closeTimeoutId) clearTimeout(closeTimeoutId);
+            
+            puzzleTiles = shufflePhotoPuzzleTiles();
+            puzzleDragIndex = null;
+            document.getElementById('photo-puzzle-status').textContent = 'Drag pieces to swap them.';
+            renderPhotoPuzzle();
+            closeCelebrationModal();
+        }
+
+        function shufflePhotoPuzzleTiles() {
+            const tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            for (let i = tiles.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+            }
+            if (tiles.every((tile, index) => tile === index)) {
+                [tiles[7], tiles[8]] = [tiles[8], tiles[7]];
+            }
+            return tiles;
+        }
+
+        // Expose shuffle so the button onclick works reliably
+        window.shufflePhotoPuzzleTiles = shufflePhotoPuzzleTiles;
+
+        function renderPhotoPuzzle() {
+            const board = document.getElementById('photo-puzzle-board');
+            if (!board) return;
+            board.innerHTML = '';
+
+            puzzleTiles.forEach((tile, index) => {
+                const piece = document.createElement('button');
+                piece.type = 'button';
+                piece.className = 'puzzle-piece';
+                piece.draggable = true;
+                piece.dataset.index = String(index);
+
+                const row = Math.floor(index / 3);
+                const col = index % 3;
+                
+                piece.style.top = `${row * tileH}px`;
+                piece.style.left = `${col * tileW}px`;
+                
+                const imageRow = Math.floor(tile / 3);
+                const imageCol = tile % 3;
+
+                const path = buildPuzzlePiecePath(row, col);
+                const clipId = `piece-clip-${index}-${tile}`;
+                
+                piece.innerHTML = `
+                    <svg viewBox="-21 -21 147 228.66" aria-hidden="true" focusable="false">
+                        <defs>
+                            <clipPath id="${clipId}">
+                                <path d="${path}"></path>
+                            </clipPath>
+                        </defs>
+                        <image href="${puzzleImageSrc}" x="${-imageCol * tileW}" y="${-imageRow * tileH}" width="315" height="560" preserveAspectRatio="none" clip-path="url(#${clipId})"></image>
+                        <path class="piece-outline" d="${path}"></path>
+                    </svg>`;
+
+                piece.addEventListener('dragstart', handlePuzzleDragStart);
+                piece.addEventListener('dragover', handlePuzzleDragOver);
+                piece.addEventListener('drop', handlePuzzleDrop);
+                piece.addEventListener('dragend', clearPuzzleDragState);
+
+                // ✅ TOUCH SUPPORT
+                piece.addEventListener('touchstart', handleTouchStart, { passive: false });
+                piece.addEventListener('touchmove', handleTouchMove, { passive: false });
+                piece.addEventListener('touchend', handleTouchEnd);
+
+                board.appendChild(piece);
+            });
+        }
+        function handleTouchStart(e) {
+    const touch = e.touches[0];
+    touchDraggingPiece = this;
+    touchStartIndex = parseInt(this.dataset.index);
+    
+    // Bring the moving piece to the front layer
+    this.style.zIndex = '100';
+}
+
+        function buildPuzzlePiecePath(row, col) {
+            const neckW = 21;  
+            const neckH = 21;  
+            const paths = [];
+            
+            const topTab = row === 0 ? 0 : (row % 2 === 0 ? 1 : -1);
+            const rightTab = col === 2 ? 0 : (col % 2 === 0 ? 1 : -1);
+            const bottomTab = row === 2 ? 0 : (row % 2 === 0 ? -1 : 1);
+            const leftTab = col === 0 ? 0 : (col % 2 === 0 ? -1 : 1);
+
+            paths.push('M 0 0');
+
+            // Top Side
+            if (topTab === 0) {
+                paths.push(`L ${tileW} 0`);
+            } else {
+                paths.push(`L 35 0 C 37 ${topTab * neckH} 68 ${topTab * neckH} 70 0 L ${tileW} 0`);
+            }
+
+            // Right Side
+            if (rightTab === 0) {
+                paths.push(`L ${tileW} ${tileH}`);
+            } else {
+                paths.push(`L ${tileW} 62.22 C ${tileW + rightTab * neckW} 64.22 ${tileW + rightTab * neckW} 122.44 ${tileW} 124.44 L ${tileW} ${tileH}`);
+            }
+
+            // Bottom Side
+            if (bottomTab === 0) {
+                paths.push(`L 0 ${tileH}`);
+            } else {
+                paths.push(`L 70 ${tileH} C 68 ${tileH + bottomTab * neckH} 35 ${tileH + bottomTab * neckH} 35 ${tileH} L 0 ${tileH}`);
+            }
+
+            // Left Side
+            if (leftTab === 0) {
+                paths.push('L 0 0');
+            } else {
+                paths.push(`L 0 124.44 C ${leftTab * neckW} 122.44 ${leftTab * neckW} 62.22 0 62.22 L 0 0`);
+            }
+
+            paths.push('Z');
+            return paths.join(' ');
+        }
+
+        function isPhotoPuzzleSolved() {
+            return puzzleTiles.every((tile, index) => tile === index);
+        }
+
+        function handlePuzzleDragStart(e) {
+            puzzleDragIndex = this.dataset.index;
+            e.dataTransfer.setData('text/plain', puzzleDragIndex);
+        }
+
+        function handlePuzzleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handlePuzzleDrop(e) {
+            e.preventDefault();
+            const targetIndex = this.dataset.index;
+
+            if (puzzleDragIndex !== null && puzzleDragIndex !== targetIndex) {
+                const temp = puzzleTiles[puzzleDragIndex];
+                puzzleTiles[puzzleDragIndex] = puzzleTiles[targetIndex];
+                puzzleTiles[targetIndex] = temp;
+                
+                renderPhotoPuzzle();
+
+                if (isPhotoPuzzleSolved()) {
+                    document.getElementById('photo-puzzle-status').textContent = '🎉 Incredible job! Solved completely!';
+                    triggerCelebration();
+                }
+            }
+        }
+
+        function clearPuzzleDragState() {
+            puzzleDragIndex = null;
+        }
+
+        function triggerCelebration() {
+            const modalImg = document.getElementById('modal-success-img');
+            modalImg.src = puzzleImageSrc;
+
+            const modal = document.getElementById('celebration-modal');
+              modal.classList.add('active');
+
+            initConfetti();
+
+             closeTimeoutId = setTimeout(() => {
+                 modal.classList.remove('active');
+                    switchScreen('letter-screen');
+            }, 1500);
+        }
+
+        function closeCelebrationModal() {
+            const modal = document.getElementById('celebration-modal');
+            if (!modal) return;
+            modal.classList.remove('active');
+            
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas) canvas.style.opacity = '0';
+            
+            setTimeout(() => {
+                cancelAnimationFrame(confettiAnimationId);
+                if(confettiCtx) {
+                    confettiCtx.clearRect(0, 0, confettiCtx.canvas.width, confettiCtx.canvas.height);
+                }
+                confettiParticles = [];
+            }, 800);
+        }
+
+        function initConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            canvas.style.opacity = '1';
+            confettiCtx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const colors = ['#ff2a5f', '#00bfff', '#00ff88', '#ffdf00', '#e066ff', '#ff7849'];
+            confettiParticles = [];
+
+            for (let i = 0; i < 140; i++) {
+                confettiParticles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    radius: Math.random() * 4 + 4, 
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    velocityX: (Math.random() - 0.5) * 18,
+                    velocityY: (Math.random() - 0.5) * 18 - 3, 
+                    gravity: 0.24,
+                    friction: 0.95,
+                    opacity: 1
+                });
+            }
+
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            confettiCtx.clearRect(0, 0, confettiCtx.canvas.width, confettiCtx.canvas.height);
+
+            confettiParticles.forEach((p) => {
+                p.velocityX *= p.friction;
+                p.velocityY *= p.friction;
+                p.velocityY += p.gravity;
+                p.x += p.velocityX;
+                p.y += p.velocityY;
+                p.opacity -= 0.004; 
+
+                confettiCtx.beginPath();
+                confettiCtx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+                confettiCtx.fillStyle = p.color;
+                confettiCtx.globalAlpha = Math.max(0, p.opacity);
+                confettiCtx.fill();
+            });
+
+            if (confettiParticles.some(p => p.opacity > 0)) {
+                confettiAnimationId = requestAnimationFrame(animateConfetti);
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas && confettiCtx) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', startPhotoPuzzle);
+// TOUCH MOVE
+function handleTouchMove(e) {
+    if (!touchDraggingPiece) return;
+
+    const touch = e.touches[0];
+    const board = document.getElementById('photo-puzzle-board');
+    const rect = board.getBoundingClientRect();
+
+    const x = touch.clientX - rect.left - tileW / 2;
+    const y = touch.clientY - rect.top - tileH / 2;
+
+    touchDraggingPiece.style.left = `${x}px`;
+    touchDraggingPiece.style.top = `${y}px`;
+}
+
+function handleTouchEnd(e) {
+    if (!touchDraggingPiece) return;
+
+    const board = document.getElementById('photo-puzzle-board');
+    const rect = board.getBoundingClientRect();
+    const touch = e.changedTouches[0];
+
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    const col = Math.floor(x / tileW);
+    const row = Math.floor(y / tileH);
+    const targetIndex = row * 3 + col;
+
+    if (targetIndex >= 0 && targetIndex < puzzleTiles.length &&
+        targetIndex !== touchStartIndex) {
+
+        const temp = puzzleTiles[touchStartIndex];
+        puzzleTiles[touchStartIndex] = puzzleTiles[targetIndex];
+        puzzleTiles[targetIndex] = temp;
+    }
+
+    renderPhotoPuzzle(); // snap back cleanly
+
+    touchDraggingPiece.style.zIndex = '1';
+    touchDraggingPiece = null;
+    touchStartIndex = null;
+
+    if (isPhotoPuzzleSolved()) {
+        document.getElementById('photo-puzzle-status').textContent =
+            '🎉 Incredible job! Solved completely!';
+        triggerCelebration();
+    }
+}
+let lastX = null;
+let lastY = null;
+const HEART_DISTANCE = 10; // ↑ bigger = fewer hearts
+
+document.addEventListener('pointermove', (e) => {
+    trackAndSpawn(e.clientX, e.clientY);
+});
+
+document.addEventListener('touchmove', (e) => {
+    if(e.touches.length > 0) {
+        trackAndSpawn(e.touches[0].clientX, e.touches[0].clientY);
+    }
+});
+
+function trackAndSpawn(clientX, clientY) {
+    if (lastX === null || lastY === null) {
+        lastX = clientX;
+        lastY = clientY;
+        return;
+    }
+
+    const dx = clientX - lastX;
+    const dy = clientY - lastY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < HEART_DISTANCE) return;
+
+    lastX = clientX;
+    lastY = clientY;
+
+    spawnHeart(clientX, clientY);
+}
+
+function spawnHeart(x, y) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = '❤';
+
+    heart.style.left = (x + (Math.random() * 20 - 10)) + 'px';
+    heart.style.top = (y + 20 + Math.random() * 10) + 'px';
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 800);
+
+}
+</script>
+</body>
+</html> 
