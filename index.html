@@ -1138,6 +1138,15 @@ body.puzzle-body {
             <button class="back-btn" onclick="switchScreen('timeline-screen')">Back</button>
         </div>
 <script>
+(function () {
+  const correctPassword = "S!9vK@3Lq#72";
+  let userPassword = prompt("🔒 This page is private.\nEnter password:");
+
+  if (userPassword !== correctPassword) {
+    alert("❌ Wrong password!");
+    document.body.innerHTML = "";
+  }
+})();
 const screenMusicMap = {
     'passcode-screen': 'audio-passcode',
     'countdown-screen': 'audio-countdown',
